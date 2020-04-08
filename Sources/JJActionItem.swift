@@ -53,7 +53,18 @@ import UIKit
             circleView.color = newValue
         }
     }
-
+    public var insetConfiguration: Inset {
+        set {
+            self.titleLabel.topInset = newValue.top
+            self.titleLabel.bottomInset = newValue.bottom
+            self.titleLabel.leftInset = newValue.left
+            self.titleLabel.rightInset = newValue.right
+        }
+        get {
+            return Inset(top: self.titleLabel.topInset, bottom: self.titleLabel.bottomInset, left: self.titleLabel.leftInset, right: self.titleLabel.rightInset)
+        }
+    }
+    
     /// The color of action item circle view with highlighted state.
     /// Default is `nil`.
     ///
@@ -101,8 +112,9 @@ import UIKit
     /// The title label of the item. Can be configured as needed.
     /// Read only.
     ///
-    @objc open fileprivate(set) lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel()
+    @objc open fileprivate(set) lazy var titleLabel: PaddingLabel = {
+        let titleLabel = PaddingLabel(withInsets: Styles.defaultInset.top, Styles.defaultInset.bottom, Styles.defaultInset.left, Styles.defaultInset.right)
+        titleLabel.backgroundColor = .red
         titleLabel.isUserInteractionEnabled = false
         titleLabel.numberOfLines = 1
         titleLabel.font = .systemFont(ofSize: UIFont.systemFontSize)

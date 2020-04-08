@@ -56,6 +56,15 @@ internal extension Styles {
     static var defaultItemCircleColor: UIColor {
         return .white
     }
+    
+    static var defaultInset: Inset {
+        var inset = Inset()
+        inset.top = 0
+        inset.bottom = 0
+        inset.left = 0
+        inset.right = 0
+        return inset
+    }
 }
 
 // MARK: - Images
